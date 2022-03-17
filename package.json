@@ -1,0 +1,16 @@
+{
+  "name": "teste-mercado-livre-servidor",
+  "version": "1.0.0",
+  "description": "servidor para atender o app para o teste de desenvolvedor frontend do mercado livre",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rafael Lopes",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.3"
+  }
+}

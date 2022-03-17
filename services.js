@@ -4,16 +4,13 @@ module.exports = {
 
     async obterProdutos(query){
         try{
-            if(!query){
-                return "dados invalidos";
-            }
             const resultado = await axios.get('https://api.mercadolibre.com/sites/MLA/search?q='+query);
             return await tratarRetornoPesquisaProdutos(resultado.data.results.slice(0,4), 
             resultado.data.filters.length? resultado.data.filters[0].values[0].path_from_root:
             resultado.data.available_filters[0].values.slice(0,5) );
         }
         catch(e) {
-            console.log('Não foi possivel buscar os produtos');
+            
             throw e;
         };
 
@@ -28,7 +25,7 @@ module.exports = {
             return await tratarRetornoDetalhamentoProduto(detalhes.data, descricao.data.plain_text, categorias.data.path_from_root);
         }
         catch(e) {
-            console.log('Não foi possivel buscar os detalhes produto '+id);
+        
             throw e;
         };
     }
@@ -83,6 +80,7 @@ async function tratarRetornoPesquisaProdutos(dados, categories){
             },
             picture: item.thumbnail,
             condition: item.condition,
+            location:item.address.state_name,
             free_shipping: item.shipping.free_shipping
         };
         retorno.items.push(itemTratado);
